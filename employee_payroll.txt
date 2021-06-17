@@ -89,3 +89,43 @@ mysql> SELECT*FROM employee_payroll
 |  8 | Charile | M      | 300000 | 2020-02-21 |
 +----+---------+--------+--------+------------+
 2 rows in set (0.02 sec)
+
+UC6 // Added the gender attribute after the name and assign the gender to the persons.
+
+mysql> ALTER TABLE employee_payroll ADD gender CHAR(1) AFTER name; 	# It is use to alter/ modify the table.
+Query OK, 0 rows affected (2.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee_payroll;					# It is use to display the table
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| gender | char(1)      | YES  |     | NULL    |                |
+| salary | double       | NO   |     | NULL    |                |
+| start  | date         | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> update employee_payroll set gender = 'F' where name = 'Terisa';		# It is use to update the gender of the persons .
+Query OK, 1 row affected (0.38 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;						# To retrive the data from the table.
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start      |
++----+---------+--------+--------+------------+
+|  6 | Bill    | NULL   | 100000 | 2018-01-03 |
+|  7 | Terisa  | F      | 200000 | 2019-11-13 |
+|  8 | Charile | NULL   | 300000 | 2020-02-21 |
++----+---------+--------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> update employee_payroll set gender = 'M' where name = 'BIill';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update employee_payroll set gender = 'M' where name = 'Charile';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
