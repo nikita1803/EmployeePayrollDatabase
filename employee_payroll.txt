@@ -129,3 +129,41 @@ Rows matched: 0  Changed: 0  Warnings: 0
 mysql> update employee_payroll set gender = 'M' where name = 'Charile';
 Query OK, 1 row affected (0.09 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
+
+UC7 // using arithmating opertion , calculating the salary
+
+mysql> SELECT AVG(salary) FROM employee_payroll WHERE gender = 'M' GROUP BY gend 	# It is use to find the average according to the gender using group by clause.
+er;
++-------------+
+| AVG(salary) |
++-------------+
+|      200000 |
++-------------+
+1 row in set (0.28 sec)
+
+mysql> SELECT AVG(salary) FROM employee_payroll GROUP BY gender;			# It is use to find the average using group by clause.
++-------------+
+| AVG(salary) |
++-------------+
+|      200000 |
+|      300000 |
++-------------+
+2 rows in set (0.05 sec)
+
+mysql> SELECT gender, AVG(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | AVG(salary) |
++--------+-------------+
+| M      |      200000 |
+| F      |      300000 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender, COUNT(name) FROM employee_payroll GROUP BY gender;		#It is use to count the entrices according to the conditions.
++--------+-------------+
+| gender | COUNT(name) |
++--------+-------------+
+| M      |           2 |
+| F      |           1 |
++--------+-------------+
+2 rows in set (0.00 sec)
