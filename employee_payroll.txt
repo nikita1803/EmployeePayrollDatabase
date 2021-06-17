@@ -1,1 +1,28 @@
 *****************************Welcome in Employee payroll service database*****************
+
+UC1 // Created a database of payroll service.
+
+mysql> CREATE DATABASE payroll_service;		# It is use to create a databae.
+Query OK, 1 row affected (0.12 sec)
+
+mysql> show databases;				# It is use to show the database.	
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.10 sec)
+
+mysql> use payroll_service;			# It is use to Choose the database.
+Database changed
+mysql> SELECT DATABASE();			# It is use the select the paticular database.
++-----------------+
+| DATABASE()      |
++-----------------+
+| payroll_service |
++-----------------+
+1 row in set (0.00 sec)
