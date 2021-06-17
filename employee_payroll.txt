@@ -59,6 +59,8 @@ mysql> INSERT INTO employee_payroll(name, salary, start) VALUES  	# It is use to
 Query OK, 3 rows affected (0.15 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 
+UC4 // Retrive the data from the table.
+
 mysql> SELECT * FROM employee_payroll;			# It is use to retrive the data from the table.
 +----+---------+--------+------------+
 | id | name    | salary | start      |
