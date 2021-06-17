@@ -70,3 +70,22 @@ mysql> SELECT * FROM employee_payroll;			# It is use to retrive the data from th
 |  8 | Charile | 300000 | 2020-02-21 |
 +----+---------+--------+------------+
 3 rows in set (0.00 sec)
+
+UC5 //Retrive Sallary from the table
+
+mysql> SELECT salary FROM employee_payroll WHERE name = 'BILL';
++--------+
+| salary |
++--------+
+| 100000 |
++--------+
+1 row in set (0.04 sec)
+mysql> SELECT*FROM employee_payroll
+    -> WHERE start BETWEEN CAST('2019-01-01' AS DATE) AND DATE(NOW());	  # Between cast and date(noew()) is a predefine.
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start      |
++----+---------+--------+--------+------------+
+|  7 | Terisa  | F      | 300000 | 2019-11-13 |
+|  8 | Charile | M      | 300000 | 2020-02-21 |
++----+---------+--------+--------+------------+
+2 rows in set (0.02 sec)
