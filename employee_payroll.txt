@@ -448,3 +448,65 @@ mysql> SELECT COUNT(basic_pay) ,employee.employee_id,employee.employee_name FROM
 +------------------+-------------+---------------+
 1 row in set (0.00 sec)
  
+UC12 // Retrive data from new table structure
+
+mysql> SELECT * FROM employee;								// Retrive data from employee table
++-------------+------------+---------------+---------+--------------+--------+
+| employee_id | company_id | employee_name | address | phone_number | gender |
++-------------+------------+---------------+---------+--------------+--------+
+|         101 |          1 | Nikita        | Lucknow | 9966553366   | F      |
+|         102 |          2 | Malvika       | Lucknow | 996653756    | F      |
+|         103 |          3 | Kamal         | Delhi   | 9966533586   | M      |
++-------------+------------+---------------+---------+--------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employee_payroll;							// Retrive data from employee_payroll table
++----+---------+--------------+---------+------------+--------+-----------+-----
+-------+-------------+--------+---------+------------+
+| id | name    | phone_number | address | department | gender | basic_pay | dedu
+ctions | taxable_pay | tax    | net_pay | start      |
++----+---------+--------------+---------+------------+--------+-----------+-----
+-------+-------------+--------+---------+------------+
+|  6 | Bill    | NULL         | NULL    |            | M      |    100000 |
+     0 |           0 |      0 |       0 | 2018-01-03 |
+|  7 | Terisa  | NULL         | NULL    | Sales      | F      |    300000 |
+     0 |           0 |      0 |       0 | 2019-11-13 |
+|  8 | Charile | NULL         | NULL    |            | M      |    300000 |
+     0 |           0 |      0 |       0 | 2020-02-21 |
+|  9 | Terisa  | NULL         | TBD     | Marketting | F      |    300000 |
+100000 |      200000 | 500000 | 1000000 | 2018-01-02 |
++----+---------+--------------+---------+------------+--------+-----------+-----
+-------+-------------+--------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM company;								// Retrive data from company table
++------------+--------------+
+| company_id | company_name |
++------------+--------------+
+|          1 | TCS          |
+|          2 | INFOSYS      |
+|          3 | CAPEGEMINI   |
++------------+--------------+
+3 rows in set (0.33 sec)
+
+mysql> SELECT MAX(payroll.basic_pay) ,employee.employee_id,employee.employee_nam	// Retrive data from payroll table where basic_pay is maximum
+e FROM payroll INNER JOIN employee ON payroll.emp_id=employee.employee_id GROUP
+BY employee.gender;
++------------------------+-------------+---------------+
+| MAX(payroll.basic_pay) | employee_id | employee_name |
++------------------------+-------------+---------------+
+|                  50000 |         101 | Nikita        |
+|                  25000 |         103 | Kamal         |
++------------------------+-------------+---------------+
+2 rows in set (0.30 sec)
+
+mysql> SELECT MIN(payroll.basic_pay) ,employee.employee_id,employee.employee_nam	// Retrive data from payroll table where basic_pay is minimum
+e FROM payroll INNER JOIN employee ON payroll.emp_id=employee.employee_id GROUP
+BY employee.gender;
++------------------------+-------------+---------------+
+| MIN(payroll.basic_pay) | employee_id | employee_name |
++------------------------+-------------+---------------+
+|                  15000 |         101 | Nikita        |
+|                  25000 |         103 | Kamal         |
++------------------------+-------------+---------------+
+2 rows in set (0.00 sec)
