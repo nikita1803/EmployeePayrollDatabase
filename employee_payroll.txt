@@ -299,3 +299,109 @@ mysql> SELECT * from employee_payroll;
 |  9 | Terisa  | NULL         | TBD     | Marketting | F      |    300000 |     100000 |      200000 | 500000 | 1000000 | 2018-01-02 |
 +----+---------+--------------+---------+------------+--------+-----------+------------+-------------+--------+---------+------------+
 4 rows in set (0.00 sec)
+
+UC11 //
+
+mysql> CREATE TABLE company						// Created a table name as company
+    -> (
+    -> company_id       INT unsigned NOT NULL AUTO_INCREMENT,
+    -> company_name     VARCHAR(50) NOT NULL,
+    -> PRIMARY KEY (COMPANY_id)
+    -> );
+Query OK, 0 rows affected (1.99 sec)
+
+mysql> INSERT INTO company(company_name) VALUES				// Inserted data into company.
+    -> ('TCS'),
+    -> ('INFOSYS'),
+    -> ('CAPEGEMINI');
+Query OK, 3 rows affected (0.20 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM company;						// Display the table 
++------------+--------------+
+| company_id | company_name |
++------------+--------------+
+|          1 | TCS          |
+|          2 | INFOSYS      |
+|          3 | CAPEGEMINI   |
++------------+--------------+
+3 rows in set (0.08 sec)
+ mysql> CREATE TABLE employee						// Created a table name as employee
+    -> (
+    -> employee_id      INT unsigned NOT NULL,
+    -> company_id       INT unsigned NOT NULL,
+    -> employee_name    VARCHAR(50) NOT NULL,
+    -> address          VARCHAR(100) NOT NULL DEFAULT 'TBD',
+    -> phone_number     VARCHAR(10) NOT NULL,
+    -> gender           VARCHAR(5) NOT NULL,
+    -> PRIMARY KEY (employee_id),					// Created primary key of employee_id
+    -> FOREIGN KEY(company_id) REFERENCES company(company_id));		// Foreign key is use to connect with company table to employee table.
+Query OK, 0 rows affected (1.10 sec)
+
+mysql> INSERT INTO employee VALUES					// Inserted value into employee.
+    -> (101,1,'Nikita','Lucknow','9966553366','F'),
+    -> (102,2,'Malvika','Lucknow','996653756','F'),
+    -> (104,3,'Kamal','Delhi','9966533586','M');
+Query OK, 3 rows affected (0.16 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee;						// Display the employee table.
++-------------+------------+---------------+---------+--------------+--------+
+| employee_id | company_id | employee_name | address | phone_number | gender |
++-------------+------------+---------------+---------+--------------+--------+
+|         101 |          1 | Nikita        | Lucknow | 9966553366   | F      |
+|         102 |          2 | Malvika       | Lucknow | 996653756    | F      |
+|         104 |          3 | Kamal         | Delhi   | 9966533586   | M      |
++-------------+------------+---------------+---------+--------------+--------+
+3 rows in set (0.30 sec)
+mysql> UPDATE employee SET employee_id=103 WHERE address='Delhi';	// Updated employee table.
+Query OK, 1 row affected (0.21 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee;
++-------------+------------+---------------+---------+--------------+--------+
+| employee_id | company_id | employee_name | address | phone_number | gender |
++-------------+------------+---------------+---------+--------------+--------+
+|         101 |          1 | Nikita        | Lucknow | 9966553366   | F      |
+|         102 |          2 | Malvika       | Lucknow | 996653756    | F      |
+|         103 |          3 | Kamal         | Delhi   | 9966533586   | M      |
++-------------+------------+---------------+---------+--------------+--------+
+3 rows in set (0.07 sec)
+mysql> CREATE TABLE employee_department					// Created table employee_department
+    -> (
+    -> emp_id   INT unsigned NOT NULL,
+    -> dept_id  INT NOT NULL,
+    -> PRIMARY KEY (emp_id,dept_id),
+    -> FOREIGN KEY (emp_id) REFERENCES employee(employee_id),		// Foreign key is use to connect with employee 
+    -> FOREIGN KEY (dept_id) REFERENCES department(dept_id)		// Foreign key is use to connect with department
+    -> );
+Query OK, 0 rows affected (0.78 sec)
+mysql> CREATE TABLE payroll						// Created table payroll
+    -> (
+    -> emp_id   INT DEFAULT NULL,
+    -> basic_pay        DOUBLE NOT NULL,
+    -> deduction        DOUBLE NOT NULL,
+    -> taxable_pay      DOUBLE NOT NULL,
+    -> tax              DOUBLE NOT NULL,
+    -> net_pay          DOUBLE NOT NULL
+    -> );
+Query OK, 0 rows affected (1.15 sec)
+
+mysql> INSERT INTO payroll VALUES					// Inserted into payroll
+    -> (
+    -> 101,15000,2000,13000,2000,11000),
+    -> (102,50000,7000,43000,4000,39000),
+    -> (103,25000,5000,20000,2000,18000);
+Query OK, 3 rows affected (0.17 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM payroll;						// Display payroll.
++--------+-----------+-----------+-------------+------+---------+
+| emp_id | basic_pay | deduction | taxable_pay | tax  | net_pay |
++--------+-----------+-----------+-------------+------+---------+
+|    101 |     15000 |      2000 |       13000 | 2000 |   11000 |
+|    102 |     50000 |      7000 |       43000 | 4000 |   39000 |
+|    103 |     25000 |      5000 |       20000 | 2000 |   18000 |
++--------+-----------+-----------+-------------+------+---------+
+3 rows in set (0.00 sec)
+ 
