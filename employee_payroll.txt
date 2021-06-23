@@ -404,4 +404,47 @@ mysql> SELECT * FROM payroll;						// Display payroll.
 |    103 |     25000 |      5000 |       20000 | 2000 |   18000 |
 +--------+-----------+-----------+-------------+------+---------+
 3 rows in set (0.00 sec)
+mysql> SELECT SUM(basic_pay) ,employee.employee_id,employee.employee_name FROM p	// SUM function is use 
+ayroll INNER JOIN employee ON payroll.emp_id=employee.employee_id;
++----------------+-------------+---------------+
+| SUM(basic_pay) | employee_id | employee_name |
++----------------+-------------+---------------+
+|          90000 |         101 | Nikita        |
++----------------+-------------+---------------+
+1 row in set (0.11 sec)
+mysql> SELECT AVG(basic_pay) ,employee.employee_id,employee.employee_name FROM p	// AVG function is use
+ayroll INNER JOIN employee ON payroll.emp_id=employee.employee_id;
++----------------+-------------+---------------+
+| AVG(basic_pay) | employee_id | employee_name |
++----------------+-------------+---------------+
+|          30000 |         101 | Nikita        |
++----------------+-------------+---------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT MIN(basic_pay) ,employee.employee_id,employee.employee_name FROM p	// MIN function is use 
+ayroll INNER JOIN employee ON payroll.emp_id=employee.employee_id;
++----------------+-------------+---------------+
+| MIN(basic_pay) | employee_id | employee_name |
++----------------+-------------+---------------+
+|          15000 |         101 | Nikita        |
++----------------+-------------+---------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT MAX(basic_pay) ,employee.employee_id,employee.employee_name FROM p	// MAX function is use
+ayroll INNER JOIN employee ON payroll.emp_id=employee.employee_id;
++----------------+-------------+---------------+
+| MAX(basic_pay) | employee_id | employee_name |
++----------------+-------------+---------------+
+|          50000 |         101 | Nikita        |
++----------------+-------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(basic_pay) ,employee.employee_id,employee.employee_name FROM	// COUNT function is use
+ payroll INNER JOIN employee ON payroll.emp_id=employee.employee_id;
++------------------+-------------+---------------+
+| COUNT(basic_pay) | employee_id | employee_name |
++------------------+-------------+---------------+
+|                3 |         101 | Nikita        |
++------------------+-------------+---------------+
+1 row in set (0.00 sec)
  
